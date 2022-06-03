@@ -1,0 +1,87 @@
+{% extends 'layout.html' %} {% block custom_styles %}
+{% load static %}
+<!-- Favicon-->
+<link rel="icon" type="image/x-icon" href="{% static 'img/favicon.ico'%}" />
+{% endblock %}
+{% block title %}Buy your tickets{% endblock %} 
+{% block content %}
+<!-- Form-->
+<section class="page-section" id="services">
+  <div class="container p-3 col-lg-12 col-12 mx-auto">
+    <form
+      class="custom-form contact-form bg-white shadow-lg"
+      action="#"
+      method="post"
+      role="form"
+    >
+      <h2>Comprar tiquete</h2>
+      {% csrf_token %}
+      <div class="row">
+        <div class="alert">{{ form.errors }}</div>
+        {% comment %} {{ form.as_p}} {% endcomment %}
+        <div class="col-lg-3 col-md-3 col-3">
+          {{ form.route_id }}
+          {% comment %} <select
+            class="form-control py-0 px-2"
+            aria-label="routes"
+            name="route_id">
+            <option selected disabled>Seleccione su Ruta</option>
+            {% for route in form.route_id %}
+              <option value="{{route}}">{{route.origin}} -> {{route.destination}}</option>
+            {% endfor %} 
+          </select> {% endcomment %}
+        </div>
+        <div class="col-lg-3 col-md-3 col-3">
+          {{ form.bus_id }}
+        </div>
+        <div class="col-lg-3 col-md-3 col-3">
+          {{ form.passenger_id }}
+        </div>
+        <div class="col-lg-3 col-md-3 col-3">
+          {{ form.travel_date }}
+          {% comment %} <input
+            type="text"
+            name="travel_date"
+            id="travel_date"
+            class="form-control"
+            required=""
+            placeholder="Fecha de viaje"
+            onfocus="(this.type='date')"
+            onblur="(this.type='text')"
+          /> {% endcomment %}
+        </div>
+        <div class="col-lg-3 col-md-3 col-3">
+          {{ form.departure_time }}
+          {% comment %} <input
+            type="text"
+            name="departure_time"
+            id="departure_time"
+            class="form-control"
+            required=""
+            placeholder="Hora de salida"
+            onfocus="(this.type='time')"
+          /> {% endcomment %}
+        </div>
+
+        <div class="col-lg-3 col-md-3 col-3">
+          {{ form.quantity }}
+          {% comment %} <input
+            type="number"
+            name="quantity"
+            id="quantity"
+            class="form-control"
+            placeholder="Cantidad"
+            required=""
+            min=1
+          /> {% endcomment %}
+        </div>
+        
+        <div class="col-lg-3 col-md-3 col-3 pb-1 float-end position-static" >
+          <button type="submit" class="form-control pt-2">Comprar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+</section>
+{% endblock %} 
